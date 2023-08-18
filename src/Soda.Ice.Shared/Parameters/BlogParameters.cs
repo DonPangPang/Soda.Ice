@@ -1,0 +1,16 @@
+﻿using Soda.Ice.Abstracts;
+using Soda.Ice.Common.Attributes;
+
+namespace Soda.Ice.Shared.Parameters;
+
+public class BlogParameters : IceParameters, IDateRange, IPaging, ISorting
+{
+    [IceCompare(Operation.Contains)]
+    public string? Title { get; set; }
+
+    public DateTime? StartTime { get; set; }
+    public DateTime? EndTime { get; set; }
+    public int Page { get; set; }
+    public int PageSize { get; set; }
+    public string? OrderBy { get; set; }
+}
