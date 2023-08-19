@@ -22,14 +22,8 @@ public class AuthorizationController : ApiControllerBase
 {
     private readonly Session _session;
     private readonly IUnitOfWork _unitOfWork;
-    private PermissionRequirement _tokenParameter;
+    private readonly PermissionRequirement _tokenParameter;
 
-    /// <summary>
-    /// </summary>
-    /// <param name="weComServices"> </param>
-    /// <param name="session">       </param>
-    /// <param name="serviceGen">    </param>
-    /// <param name="configuration"> </param>
     public AuthorizationController(
         Session session,
         IConfiguration configuration,
@@ -46,13 +40,13 @@ public class AuthorizationController : ApiControllerBase
     /// </summary>
     /// <param name="request"> </param>
     /// <returns> </returns>
-    [HttpPost]
+    [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] VLogin request)
     {
         if (string.IsNullOrEmpty(request.Account) || string.IsNullOrEmpty(request.Password))
             return Fail("Invalid Request");
 
-        var user = await _unitOfWork.Query<User>().Where(x => x.Account.Equals(request.UseAccountrName)).FirstOrDefaultAsync();
+        var user = await _unitOfWork.Query<User>().Where(x => x.Account.Equals(request.Account)).FirstOrDefaultAsync();
         if (user is null)
         {
             return Fail("账号不存在");
@@ -63,7 +57,7 @@ public class AuthorizationController : ApiControllerBase
         }
 
         //生成Token和RefreshToken
-        var token = GenUserToken(user.Id, request.Account, user.Role.ToString());
+        var token = GenUserToken(user.Id, request.Account, user.Name);
         var refreshToken = "123456";
 
         return Success(new VToken { Token = token, RefreshToken = refreshToken, User = user.MapTo<VUser>() });
@@ -74,7 +68,7 @@ public class AuthorizationController : ApiControllerBase
     /// </summary>
     /// <param name="dto"> </param>
     /// <returns> </returns>
-    [HttpPost]
+    [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] VRegisterUser dto)
     {
         if (dto is null) throw new ArgumentNullException(nameof(dto));

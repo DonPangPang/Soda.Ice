@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Soda.AutoMapper;
 using Soda.Ice.Abstracts;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using Soda.Ice.Shared;
 namespace Soda.Ice.WebApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[Controller]")]
     public class ApiControllerBase : ControllerBase
     {
