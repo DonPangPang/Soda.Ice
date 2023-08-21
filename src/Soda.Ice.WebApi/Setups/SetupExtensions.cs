@@ -31,6 +31,7 @@ public static class SetupExtensions
         services.AddMemoryCache();
         services.AddAuthSetup();
         services.AddAutoMapperSetup();
+        services.AddSwaggerSetup();
     }
 
     private static void AddMemoryDb(this IServiceCollection services)

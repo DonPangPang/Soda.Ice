@@ -22,10 +22,15 @@ namespace Soda.Ice.WebApi.Auth
             AddClaim(new Claim(claimType, value ?? defaultValue ?? string.Empty));
         }
 
-        public string? UserId
+        public Guid? UserId
         {
-            get => GetClaimValue("UserId");
-            set => SetClaimValue("UserId", value);
+            get
+            {
+                var userId = GetClaimValue("UserId");
+                Guid.TryParse(userId, out var id);
+                return id;
+            }
+            set => SetClaimValue("UserId", value.ToString());
         }
     }
 }

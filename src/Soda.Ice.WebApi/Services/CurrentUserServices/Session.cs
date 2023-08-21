@@ -9,7 +9,7 @@ public class Session
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public Guid UserId => Guid.Parse(Identity.UserId ?? "");
+    public Guid UserId => Identity.UserId ?? Guid.Empty;
 
     public Session(IHttpContextAccessor httpContextAccessor)
     {

@@ -7,7 +7,7 @@ public interface IEntity
 
 public abstract class EntityBase : IEntity
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
 }
 
 public interface ISoftDeleted

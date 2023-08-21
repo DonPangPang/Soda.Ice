@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -41,6 +42,7 @@ public class AuthorizationController : ApiControllerBase
     /// <param name="request"> </param>
     /// <returns> </returns>
     [HttpPost("login")]
+    [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] VLogin request)
     {
         if (string.IsNullOrEmpty(request.Account) || string.IsNullOrEmpty(request.Password))
@@ -69,6 +71,7 @@ public class AuthorizationController : ApiControllerBase
     /// <param name="dto"> </param>
     /// <returns> </returns>
     [HttpPost("register")]
+    [AllowAnonymous]
     public async Task<IActionResult> Register([FromBody] VRegisterUser dto)
     {
         if (dto is null) throw new ArgumentNullException(nameof(dto));
@@ -82,6 +85,33 @@ public class AuthorizationController : ApiControllerBase
         if (res) Success("注册成功");
 
         return Fail("注册失败");
+    }
+
+    [HttpPost("change")]
+    public async Task<IActionResult> ChangePassword([FromBody] VChangePassword vChangePassword)
+    {
+        var user = await _unitOfWork.Query<User>().FirstOrDefaultAsync(x => x.Id == _session.UserId);
+
+        if (user is null)
+            return Fail("找不到用户");
+
+        if (!user.Password.Equals(vChangePassword.OldPassword))
+        {
+            return Fail("密码错误");
+        }
+
+        if (vChangePassword.Verify())
+        {
+            user.Password = vChangePassword.NewPassword;
+            _unitOfWork.Db.Update(user);
+
+            if (await _unitOfWork.CommitAsync())
+            {
+                return Success("修改密码成功");
+            }
+        }
+
+        return Fail("修改密码失败");
     }
 
     /// <summary>

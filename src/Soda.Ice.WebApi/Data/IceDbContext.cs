@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Soda.Ice.Abstracts;
 using Soda.Ice.Common.Helpers;
+using Soda.Ice.Domain;
 using Soda.Ice.WebApi.Services.CurrentUserServices;
 using System.Reflection;
 
@@ -26,6 +27,15 @@ public class IceDbContext : DbContext
                 modelBuilder.Model.AddEntityType(entityType);
             }
         }
+
+        modelBuilder.Entity<User>().HasData(new User
+        {
+            Name = "Admin",
+            IsSuper = true,
+            Account = "admin",
+            Password = "123456",
+            Enabled = true,
+        });
 
         base.OnModelCreating(modelBuilder);
     }
