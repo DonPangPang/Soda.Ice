@@ -12,6 +12,7 @@ public record VBlog : ViewModel, ICreator, IModifior, ISoftDeleted
     public string Descrption => Content[..(Content.Length > 200 ? 200 : Content.Length)];
 
     public string Content { get; set; } = string.Empty;
+    public ICollection<VFileResource> FileResources { get; set; } = new List<VFileResource>();
 
     public ICollection<VBlogViewLog> BlogViewLogs { get; set; } = new List<VBlogViewLog>();
 

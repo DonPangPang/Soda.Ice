@@ -70,7 +70,8 @@ namespace Soda.Ice.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetList([FromQuery] TParameters parameters)
+        [AllowAnonymous]
+        public virtual async Task<IActionResult> GetList([FromQuery] TParameters parameters)
         {
             var res = await _unitOfWork.Query<TEntity>().Map<TEntity, TViewModel>().QueryAsync(parameters);
 

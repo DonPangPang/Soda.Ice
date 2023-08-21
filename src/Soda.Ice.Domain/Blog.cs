@@ -15,6 +15,8 @@ public class Blog : EntityBase, ICreator, IModifior
 
     public string Content { get; set; } = string.Empty;
 
+    public ICollection<FileResource> FileResources { get; set; } = new List<FileResource>();
+
     public ICollection<BlogViewLog> BlogViewLogs { get; set; } = new List<BlogViewLog>();
 
     [NotMapped]

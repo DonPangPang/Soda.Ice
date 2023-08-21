@@ -7,17 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1A8A2D77-581
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E49D913D-43A6-4884-9E47-ACA5FB968FF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soda.Ice.Client", "src\Soda.Ice.Client\Soda.Ice.Client.csproj", "{C6F37105-A16A-4987-AFA7-8C0E00CC0CBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soda.Ice.Shared", "src\Soda.Ice.Shared\Soda.Ice.Shared.csproj", "{62CB0BB9-A2EF-4D49-9629-9768506DF2B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soda.Ice.Shared", "src\Soda.Ice.Shared\Soda.Ice.Shared.csproj", "{62CB0BB9-A2EF-4D49-9629-9768506DF2B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soda.Ice.WebApi", "src\Soda.Ice.WebApi\Soda.Ice.WebApi.csproj", "{018863A1-7C47-427A-B0B6-B578C6BE44C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soda.Ice.WebApi", "src\Soda.Ice.WebApi\Soda.Ice.WebApi.csproj", "{018863A1-7C47-427A-B0B6-B578C6BE44C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soda.Ice.Domain", "src\Soda.Ice.Domain\Soda.Ice.Domain.csproj", "{4DC58AB7-38F9-4BA7-91B9-5979BAF437B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soda.Ice.Domain", "src\Soda.Ice.Domain\Soda.Ice.Domain.csproj", "{4DC58AB7-38F9-4BA7-91B9-5979BAF437B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soda.Ice.Abstracts", "src\Soda.Ice.Abstracts\Soda.Ice.Abstracts.csproj", "{13A0E5AA-D0D1-40D9-88B9-EB582D301E78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soda.Ice.Abstracts", "src\Soda.Ice.Abstracts\Soda.Ice.Abstracts.csproj", "{13A0E5AA-D0D1-40D9-88B9-EB582D301E78}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soda.Ice.Common", "src\Soda.Ice.Common\Soda.Ice.Common.csproj", "{D70A5D83-25E3-4054-B4AB-08A1645B5188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soda.Ice.Common", "src\Soda.Ice.Common\Soda.Ice.Common.csproj", "{D70A5D83-25E3-4054-B4AB-08A1645B5188}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C6F37105-A16A-4987-AFA7-8C0E00CC0CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6F37105-A16A-4987-AFA7-8C0E00CC0CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6F37105-A16A-4987-AFA7-8C0E00CC0CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6F37105-A16A-4987-AFA7-8C0E00CC0CBB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62CB0BB9-A2EF-4D49-9629-9768506DF2B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{62CB0BB9-A2EF-4D49-9629-9768506DF2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62CB0BB9-A2EF-4D49-9629-9768506DF2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,7 +48,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C6F37105-A16A-4987-AFA7-8C0E00CC0CBB} = {1A8A2D77-5816-4001-BF03-C5B9CC4E32AE}
 		{62CB0BB9-A2EF-4D49-9629-9768506DF2B6} = {1A8A2D77-5816-4001-BF03-C5B9CC4E32AE}
 		{018863A1-7C47-427A-B0B6-B578C6BE44C0} = {1A8A2D77-5816-4001-BF03-C5B9CC4E32AE}
 		{4DC58AB7-38F9-4BA7-91B9-5979BAF437B7} = {1A8A2D77-5816-4001-BF03-C5B9CC4E32AE}
