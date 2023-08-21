@@ -21,6 +21,8 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddIce();
 
+builder.WebHost.UseUrls("http://*:8090/");
+
 var app = builder.Build();
 
 app.InitSodaMapper();
@@ -42,6 +44,14 @@ else
 }
 
 app.UseBlazorFrameworkFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    ServeUnknownFileTypes = true
+    //ContentTypeProvider = new FileExtensionContentTypeProvider(new Dictionary<string, string>
+    //        {
+    //                { ".apk", "application/vnd.android.package-archive" }
+    //        })
+});
 
 app.UseHttpsRedirection();
 
