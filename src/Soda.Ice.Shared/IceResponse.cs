@@ -14,7 +14,7 @@ public class IceResponse<T>
 
     private string? _message;
 
-    public string? Message
+    public string Message
     {
         get
         {

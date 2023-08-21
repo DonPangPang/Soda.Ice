@@ -1,0 +1,50 @@
+﻿@page "/login"
+@inject AuthorizationApiService AuthorizationApiService
+
+<PageTitle>登录</PageTitle>
+
+<MContainer>
+    <MCard Width="500">
+        <MCardTitle>
+            Login
+        </MCardTitle>
+        <MCardText>
+            <MContainer>
+                <MRow>
+                    <MTextField @bind-Value="loginDto.Account"
+                                TValue="string" Label="账号"
+                                Placeholder="请输入账号"
+                                Outlined
+                                Dense>
+                    </MTextField>
+                </MRow>
+                <MRow>
+                    <MTextField @bind-Value="loginDto.Password"
+                                TValue="string" Label="密码"
+                                Placeholder="请输入密码"
+                                AppendIcon="@(ShowPassword ? "mdi-eye" : "mdi-eye-off")"
+                                Type="@(ShowPassword ? "text" : "password")"
+                                Outlined
+                                 OnAppendClick="()=> ShowPassword = !ShowPassword"
+                                Dense>
+                    </MTextField>
+                </MRow>
+                <MRow>
+                    <MButton OnClick="LoginHandler">登录</MButton>
+                </MRow>
+            </MContainer>
+        </MCardText>
+    </MCard>
+</MContainer>
+
+
+@code {
+    bool ShowPassword = false;
+
+    VLogin loginDto = new VLogin();
+
+    async Task LoginHandler()
+    {
+        await AuthorizationApiService.Login(loginDto);
+    }
+}

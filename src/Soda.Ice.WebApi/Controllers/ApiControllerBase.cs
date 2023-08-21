@@ -138,7 +138,7 @@ namespace Soda.Ice.WebApi.Controllers
 
             if (await _unitOfWork.CommitAsync())
             {
-                return Ok();
+                return Success();
             }
 
             return Fail();

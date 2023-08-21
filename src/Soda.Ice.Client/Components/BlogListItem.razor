@@ -1,0 +1,31 @@
+﻿<MCard Style="margin:5px" class="border-radius-lg">
+    <MCardText>
+        <MRow Justify="JustifyTypes.Center">
+            @if (IsLeft)
+            {
+                <MCol Cols="4" Style="background-color:yellow">
+                    <MImage Alt="example" Height="200" Src="https://cdn.masastack.com/stack/images/website/masa-blazor/cards/cooking.png" />
+                </MCol>
+                <MSpacer></MSpacer>
+                <MCol Cols="8" Style="background-color:green">
+                    Content
+                </MCol>
+            }
+            else
+            {
+                <MCol Cols="8">
+                    文字
+                </MCol>
+                <MSpacer></MSpacer>
+                <MCol Cols="4">
+                    <MImage Alt="example" Height="200" Src="https://cdn.masastack.com/stack/images/website/masa-blazor/cards/cooking.png" />
+                </MCol>
+            }
+        </MRow>
+    </MCardText>
+</MCard>
+
+@code {
+    [Parameter]
+    public bool IsLeft { get; set; } = false;
+}

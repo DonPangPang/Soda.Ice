@@ -9,5 +9,7 @@ namespace Soda.Ice.Common
     public class GlobalVars
     {
         public const string Permission = "ice";
+
+        public const string ApiBase = "base";
     }
 }
