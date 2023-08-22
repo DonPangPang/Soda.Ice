@@ -14,4 +14,8 @@
     <Folder Include="Helpers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Soda.Ice.Abstracts\Soda.Ice.Abstracts.csproj" />
+  </ItemGroup>
+
 </Project>

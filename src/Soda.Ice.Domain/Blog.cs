@@ -15,12 +15,23 @@ public class Blog : EntityBase, ICreator, IModifior
 
     public string Content { get; set; } = string.Empty;
 
-    public ICollection<FileResource> FileResources { get; set; } = new List<FileResource>();
+    public Guid? LocalBlogFileResourceId { get; set; }
+    public FileResource? LocalBlogFileResource { get; set; }
+
+    /// <summary>
+    /// 图片资源列表
+    /// </summary>
+    public ICollection<FileResource> ImageFileResources { get; set; } = new List<FileResource>();
 
     public ICollection<BlogViewLog> BlogViewLogs { get; set; } = new List<BlogViewLog>();
 
+    public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
     [NotMapped]
     public int BlogViewLogCount => BlogViewLogs.Count;
+
+    [NotMapped]
+    public int CommentsLength => Comments.Count;
 
     public Guid CreatorId { get; set; }
     public User? Creator { get; set; }
