@@ -13,6 +13,8 @@ public record VUser : ViewModel, IEnabled
     public string? Descrption { get; set; }
     public string Account { get; set; } = string.Empty;
     public bool Enabled { get; set; }
+    public string? Address { get; set; } = "http://ice.blog.com";
+    public string? Github { get; set; } = "https://github.com/DonPangPang";
 }
 
 public record VRegisterUser : VUser

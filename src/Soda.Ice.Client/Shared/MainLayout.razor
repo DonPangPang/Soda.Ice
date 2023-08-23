@@ -21,7 +21,19 @@
      <MMain>
          <MContainer Fluid Id="scrolling-sheet-3">
              <MErrorHandler>
-                 @Body
+                 <MRow Justify="JustifyTypes.Center">
+                     <MCol Cols="6">
+                         @Body
+                     </MCol>
+                     <MCol Cols="2">
+                         <UserInfo>
+
+                         </UserInfo>
+                         <br />
+                         <TagsPanel></TagsPanel>
+                     </MCol>
+                 </MRow>
+
              </MErrorHandler>
          </MContainer>
      </MMain>

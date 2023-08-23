@@ -18,6 +18,8 @@ public class User : EntityBase, IEnabled
     public string? Descrption { get; set; }
     public string Account { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
+    public string? Address { get; set; } = "http://ice.blog.com";
+    public string? Github { get; set; } = "https://github.com/DonPangPang";
     public bool Enabled { get; set; }
     public bool IsSuper { get; set; } = false;
 }

@@ -6,6 +6,7 @@ using Soda.Ice.Shared;
 using Soda.Ice.Shared.Parameters;
 using Soda.Ice.Shared.ViewModels;
 using Soda.Ice.WebApi.Controllers;
+using Soda.Ice.WebApi.Helpers;
 
 namespace Soda.Ice.Client.Services
 {
@@ -45,14 +46,14 @@ namespace Soda.Ice.Client.Services
             _iceHttpClient = iceHttpClient;
         }
 
-        public async Task<IEnumerable<TViewModel>> GetList(TParameters parameters)
+        public async Task<VPagedList<TViewModel>> GetList(TParameters parameters)
         {
             var res = await _iceHttpClient.Create().Url($"/api/{ControllerName}{parameters.GetQueryString()}")
                 .GetAsync<IceResponse<IEnumerable<TViewModel>>>();
 
             await MessageHandler(res);
 
-            return res?.Data ?? Enumerable.Empty<TViewModel>();
+            return (VPagedList<TViewModel>)(res?.Data ?? Enumerable.Empty<TViewModel>());
         }
 
         public async Task<TViewModel> Get(Guid id)

@@ -10,7 +10,7 @@ public class BlogParameters : IceParameters, IDateRange, IPaging, ISorting
 
     public DateTime? StartTime { get; set; }
     public DateTime? EndTime { get; set; }
-    public int Page { get; set; }
-    public int PageSize { get; set; }
+    public int Page { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
     public string? OrderBy { get; set; }
 }

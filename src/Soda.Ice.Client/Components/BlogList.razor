@@ -1,11 +1,73 @@
-﻿@foreach (var item in Enumerable.Range(1, 50))
+﻿@inject BlogApiService BlogApiService
+
+@foreach (var item in Blogs)
 {
-    <BlogListItem IsLeft="item%2==1"></BlogListItem>
+    <BlogListItem IsLeft="index%2==1" Blog="item"></BlogListItem>
+    index++;
 }
+<div class="text-center">
+    <MPagination @bind-Value="Page"
+                 Length="@Blogs.TotalPages"
+                 TotalVisible="7" OnInput="ChangePageHandler"></MPagination>
+</div>
 
 @code {
-    protected override Task OnInitializedAsync()
+    int Page = 1;
+    int index = 0;
+
+    VPagedList<VBlog> Blogs = new()
     {
-        return base.OnInitializedAsync();
+        new()
+        {
+            Title = "这是一个测试标题",
+            Content = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
+        },
+        new()
+        {
+            Title = "这是一个测试标题",
+            Content = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
+        },
+        new()
+        {
+            Title = "这是一个测试标题",
+            Content = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
+        },
+        new()
+        {
+            Title = "这是一个测试标题",
+            Content = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
+        },
+        new()
+        {
+            Title = "这是一个测试标题",
+            Content = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
+        },
+        new()
+        {
+            Title = "这是一个测试标题",
+            Content = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
+        },
+    };
+    BlogParameters BlogParameters = new BlogParameters()
+        {
+            OrderBy = $"{nameof(VBlog.CreateTime)} desc"
+        };
+
+    async Task ChangePageHandler()
+    {
+        await GetBlogsAsync();
+    }
+
+    async Task GetBlogsAsync()
+    {
+        // BlogParameters.Page = Page;
+        // Blogs = await BlogApiService.GetList(BlogParameters);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetBlogsAsync();
+
+        await base.OnInitializedAsync();
     }
 }

@@ -1,0 +1,26 @@
+﻿@Content(Text, FlagValue)
+
+<style>
+    .flag {
+        border: 0.5px solid #D500F9;
+        padding: 0px 4px 0px 4px;
+        color: #D500F9;
+        border-radius: 5px;
+    }
+</style>
+
+@code {
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
+
+    [Parameter]
+    public string? Flag { get; set; }
+
+    string FlagValue => string.IsNullOrWhiteSpace(Flag) ? "" : Flag;
+
+
+    public static RenderFragment Content(string text, string flag) => builder =>
+    {
+        builder.AddMarkupContent(0, @text.Replace(@flag, $"<span class='flag'>{@flag}</span>"));
+    };
+}

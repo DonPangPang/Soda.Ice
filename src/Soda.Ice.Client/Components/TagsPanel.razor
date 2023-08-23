@@ -1,0 +1,21 @@
+﻿@foreach (var tag in Tags)
+{
+    <MChip Label Color="pink" TextColor="white" Small Style="margin:5px;">
+         @tag.Name
+     </MChip>
+}
+@code {
+    List<VBlogTag> Tags = new List<VBlogTag>()
+    {
+    };
+
+    protected override Task OnInitializedAsync()
+    {
+        Tags = new List<VBlogTag>();
+        for (var i = 0; i < 20; i++)
+        {
+            Tags.Add(new VBlogTag { Name = $"标签{i}" });
+        }
+        return base.OnInitializedAsync();
+    }
+}

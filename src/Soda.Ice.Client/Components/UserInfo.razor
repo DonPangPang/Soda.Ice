@@ -1,0 +1,59 @@
+﻿<MCard Class="rounded-xl" Style="padding:10px;">
+    <MCardText>
+        <MRow>
+            <MImage Alt="@User.Account" style="width:200px;height:200px;" Class="rounded-xl" Src="https://cdn.masastack.com/stack/images/website/masa-blazor/cards/cooking.png" />
+        </MRow>
+        <div style="margin: 30px 20px 10px 20px">
+            <MRow>
+                <PBlockText>
+                    <PrimaryContent>
+                        <MIcon Left Small>mdi-account</MIcon>
+                        @User.Name
+                    </PrimaryContent>
+                </PBlockText>
+            </MRow>
+            <MRow>
+                <PBlockText>
+                    <PrimaryContent>
+                        <MIcon Left Small>mdi-email</MIcon>
+                        @User.Email
+                    </PrimaryContent>
+                </PBlockText>
+            </MRow>
+            <MRow>
+                <PBlockText>
+                    <PrimaryContent>
+                        <MIcon Left Small>mdi-text-box</MIcon>
+                        @User.Descrption
+                    </PrimaryContent>
+                </PBlockText>
+            </MRow>
+            <MRow>
+                <PBlockText>
+                    <PrimaryContent>
+                        <MIcon Left Small>mdi-link-variant</MIcon>
+                        <a href="@User.Address">Personal Site</a>
+                    </PrimaryContent>
+                </PBlockText>
+            </MRow>
+            <MRow>
+                <PBlockText>
+                    <PrimaryContent>
+                        <MIcon Left Small>mdi-github</MIcon>
+                        <a href="@User.Github">Github Site</a>
+                    </PrimaryContent>
+                </PBlockText>
+            </MRow>
+        </div>
+    </MCardText>
+</MCard>
+
+@code {
+    [Parameter]
+    public VUser User { get; set; } = new VUser()
+        {
+            Name = "Ice Blog",
+            Email = "iceblog@outlook.com",
+            Descrption = "这是一段简短的自我介绍, 虽然没有什么卵用."
+        };
+}
