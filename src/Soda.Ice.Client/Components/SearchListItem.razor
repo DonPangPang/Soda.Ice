@@ -1,5 +1,26 @@
-﻿<h3>SearchListItem</h3>
+﻿<MCard Elevation="0" Outlined Style="margin-bottom:5px;">
+     <MCardTitle>
+         <PBlockText Tags="tags">
+             <PrimaryContent>
+                 <TextFlag Text="@Item.Title" Flag="@Search"></TextFlag>
+             </PrimaryContent>
+         </PBlockText>
+     </MCardTitle>
+     <MCardText>
+         <TextFlag Text="@Item.Descrption" Flag="@Search"></TextFlag>
+     </MCardText>
+ </MCard>
 
-@code {
+ @code {
+    [Parameter]
+    public VBlogTiny Item { get; set; } = new();
 
+    [Parameter]
+    public string Search { get; set; } = string.Empty;
+
+    IEnumerable<BlockTextTag> tags = new List<BlockTextTag>()
+    {
+        new("分类1", "green", "white"),
+        new("分类2", "purple", true)
+    };
 }

@@ -10,7 +10,7 @@ public record VBlog : ViewModel, ICreator, IModifior, ISoftDeleted
     public ICollection<VBlogGroup> BlogGroups { get; set; } = new HashSet<VBlogGroup>();
     public ICollection<VBlogTag> BlogTags { get; set; } = new HashSet<VBlogTag>();
 
-    public string Descrption => Content[..(Content.Length > 105 ? 105 : Content.Length)];
+    public string Descrption { get; set; } = string.Empty;
 
     public string Content { get; set; } = string.Empty;
 
@@ -23,8 +23,8 @@ public record VBlog : ViewModel, ICreator, IModifior, ISoftDeleted
 
     public ICollection<VComment> Comments { get; set; } = new List<VComment>();
 
-    public int BlogViewLogCount => BlogViewLogs.Count;
-    public int CommentsLength => Comments.Count;
+    public int BlogViewLogCount { get; set; }
+    public int CommentsLength { get; set; }
 
     public Guid CreatorId { get; set; }
     public VUser? Creator { get; set; }
@@ -35,16 +35,14 @@ public record VBlog : ViewModel, ICreator, IModifior, ISoftDeleted
     public bool Deleted { get; set; } = false;
 }
 
-public record VComment : ViewModel, ICreator, ISoftDeleted, ITree<VComment>
+public record VBlogTiny : ViewModel
 {
-    public string? Content { get; set; }
+    public string Title { get; set; } = string.Empty;
 
-    public Guid CreatorId { get; set; }
-    public VUser? Creator { get; set; }
-    public DateTime CreateTime { get; set; }
-    public bool Enabled { get; set; }
-    public bool Deleted { get; set; }
-    public Guid? ParentId { get; set; }
-    public ICollection<VComment>? Children { get; set; }
-    public string? TreeIds { get; set; }
+    public ICollection<VBlogGroup> BlogGroups { get; set; } = new HashSet<VBlogGroup>();
+    public ICollection<VBlogTag> BlogTags { get; set; } = new HashSet<VBlogTag>();
+
+    public string Descrption { get; set; } = string.Empty;
+
+    public string Content { get; set; } = string.Empty;
 }

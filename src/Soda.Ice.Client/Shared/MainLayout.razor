@@ -1,10 +1,25 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
 
 <MApp>
     <MAppBar App>
-        <MAppBarNavIcon></MAppBarNavIcon>
+        <MAppBarNavIcon>
+            <ChildContent>
+                <MButton Icon Href="/" Color="pink" XLarge>
+                    <MIcon>
+                        mdi-ice-pop
+                    </MIcon>
+                </MButton>
+            </ChildContent>
+        </MAppBarNavIcon>
         <MToolbarTitle>ICE BLOG</MToolbarTitle>
         <MSpacer></MSpacer>
+        <MButton class="mx-2" Href="/search" Outlined>
+            <MIcon>
+                mdi-magnify
+            </MIcon>
+            搜索
+        </MButton>
         <MButton class="mx-2"
                  Fab
                  Small
@@ -22,10 +37,10 @@
          <MContainer Fluid Id="scrolling-sheet-3">
              <MErrorHandler>
                  <MRow Justify="JustifyTypes.Center">
-                     <MCol Cols="6">
+                     <MCol Lg="6" Style="min-width:900px;">
                          @Body
                      </MCol>
-                     <MCol Cols="2">
+                     <MCol Lg="3" Style="min-width:300px;">
                          <UserInfo>
 
                          </UserInfo>
@@ -40,5 +55,8 @@
  </MApp>
 
  @code {
-
+    void ToHome()
+    {
+        NavigationManager.NavigateTo("/");
+    }
 }

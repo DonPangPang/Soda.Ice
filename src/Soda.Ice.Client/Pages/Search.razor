@@ -1,5 +1,7 @@
 ﻿@page "/search"
 
+<PageTitle>搜索</PageTitle>
+
 <MTextField Label="请输入搜索的内容"
             TValue="string"
             Outlined
@@ -8,42 +10,44 @@
              AppendIcon="mdi-magnify" Class="rounded-lg">
  </MTextField>
  <TagsPanel></TagsPanel>
+ <SearchList Search="@_search" Items="@MachItems"></SearchList>
 
- @foreach (var item in _items)
-{
-    <div>
-        <TextFlag Text="@item" Flag="@_search"></TextFlag>
-    </div>
-}
-
-@code {
+ @code {
     private bool _loading;
     string _search = string.Empty;
-    private List<string> _items = new List<string>();
-    private List<string> _states = new List<string>()
+    private List<VBlogTiny> MachItems = new List<VBlogTiny>();
+
+    List<VBlogTiny> Blogs = new List<VBlogTiny>()
     {
-        "Alabama", "Alaska", "American Samoa", "Arizona",
-        "Arkansas", "California", "Colorado", "Connecticut",
-        "Delaware", "District of Columbia", "Federated States of Micronesia",
-        "Florida", "Georgia", "Guam", "Hawaii", "Idaho",
-        "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
-        "Louisiana", "Maine", "Marshall Islands", "Maryland",
-        "Massachusetts", "Michigan", "Minnesota", "Mississippi",
-        "Missouri", "Montana", "Nebraska", "Nevada",
-        "New Hampshire", "New Jersey", "New Mexico", "New York",
-        "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio",
-        "Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico",
-        "Rhode Island", "South Carolina", "South Dakota", "Tennessee",
-        "Texas", "Utah", "Vermont", "Virgin Island", "Virginia",
-        "Washington", "West Virginia", "Wisconsin", "Wyoming"
+
     };
+
+    protected override Task OnInitializedAsync()
+    {
+        foreach (var item in Enumerable.Range(1, 10))
+        {
+            Blogs.Add(new VBlogTiny()
+                {
+                    Title = "这是一个测试标题",
+                    Descrption = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
+                });
+        }
+
+        return base.OnInitializedAsync();
+    }
 
     private async Task QuerySelections(string v)
     {
+        if (string.IsNullOrWhiteSpace(v))
+        {
+            MachItems.Clear();
+            return;
+        }
+
         _search = v;
         _loading = true;
-        _items = _states.Where(x => x.Contains(v)).ToList();
-        await Task.Delay(5000);
+        MachItems = Blogs.Where(x => x.Title.Contains(v) || x.Descrption.Contains(v)).ToList();
+        // await Task.Delay(5000);
         _loading = false;
     }
 }

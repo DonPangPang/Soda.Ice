@@ -1,5 +1,12 @@
-﻿<h3>SearchList</h3>
+﻿@foreach (var item in Items)
+{
+    <SearchListItem Item="@item" Search="@Search"></SearchListItem>
+}
 
 @code {
+    [Parameter]
+    public string Search { get; set; } = "";
 
+    [Parameter]
+    public List<VBlogTiny> Items { get; set; } = new();
 }

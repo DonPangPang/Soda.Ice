@@ -1,10 +1,10 @@
-﻿@Content(Text, FlagValue)
+﻿@Content(Text, Flag)
 
 <style>
     .flag {
-        border: 0.5px solid #D500F9;
+        border: 0.5px solid @Color;
         padding: 0px 4px 0px 4px;
-        color: #D500F9;
+        color: @Color;
         border-radius: 5px;
     }
 </style>
@@ -14,9 +14,10 @@
     public string Text { get; set; } = string.Empty;
 
     [Parameter]
-    public string? Flag { get; set; }
+    public string Flag { get; set; } = string.Empty;
 
-    string FlagValue => string.IsNullOrWhiteSpace(Flag) ? "" : Flag;
+    [Parameter]
+    public string Color { get; set; } = "#D500F9";
 
 
     public static RenderFragment Content(string text, string flag) => builder =>

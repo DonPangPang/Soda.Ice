@@ -5,7 +5,9 @@
         </PBlockText>
     </MCardTitle>
     <MCardText>
-        @Blog.Descrption
+        <div style="height:100px;">
+            @Blog.Descrption
+        </div>
         <div style="padding-top:12px">
             <MRow>
                 <MCol Cols="8">
@@ -42,7 +44,7 @@
     public VBlog Blog { get; set; } = new()
         {
             Title = "这是一个测试标题",
-            Content = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
+            Descrption = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
         };
 
 
