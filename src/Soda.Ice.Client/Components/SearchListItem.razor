@@ -25,7 +25,7 @@
         </div>
     </MCardSubtitle>
     <MCardText>
-        <TextFlag Text="@Item.Descrption" Flag="@Search"></TextFlag>
+        <TextFlag Text="@Item.Description" Flag="@Search"></TextFlag>
 
     </MCardText>
     <MCardActions>
@@ -39,7 +39,6 @@
 
     [Parameter]
     public string Search { get; set; } = string.Empty;
-
 
     protected override Task OnInitializedAsync()
     {

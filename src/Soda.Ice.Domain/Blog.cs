@@ -11,12 +11,15 @@ public class Blog : EntityBase, ICreator, IModifior
     public ICollection<BlogTag> BlogTags { get; set; } = new HashSet<BlogTag>();
 
     [NotMapped]
-    public string Descrption => Content[..(Content.Length > 200 ? 200 : Content.Length)];
+    public string Description => Content[..(Content.Length > 200 ? 200 : Content.Length)];
 
     public string Content { get; set; } = string.Empty;
 
-    public Guid? LocalBlogFileResourceId { get; set; }
-    public FileResource? LocalBlogFileResource { get; set; }
+    public Guid? TitleImageId { get; set; }
+    public FileResource? TitleImage { get; set; }
+
+    public Guid? LocalBlogFileId { get; set; }
+    public FileResource? LocalBlogFile { get; set; }
 
     /// <summary>
     /// 图片资源列表

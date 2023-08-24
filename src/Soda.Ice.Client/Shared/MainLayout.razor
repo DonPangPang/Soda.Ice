@@ -24,31 +24,33 @@
                  Fab
                  Small
                  Dark
-                  Target="_blank" Href="https://github.com/DonPangPang"
-                  Color="primary">
-             <MIcon>
-                 mdi-github
-             </MIcon>
-         </MButton>
+                 Target="_blank" Href="https://github.com/DonPangPang"
+                 Color="primary">
+            <MIcon>
+                mdi-github
+            </MIcon>
+        </MButton>
 
-     </MAppBar>
+    </MAppBar>
 
-     <MMain>
-         <MContainer Fluid Id="scrolling-sheet-3">
-             <MErrorHandler>
-                 <MRow Justify="JustifyTypes.Center">
-                     <MCol Lg="6" Style="min-width:900px;">
-                         @Body
-                     </MCol>
-                     <MCol Lg="3" Style="min-width:300px;">
-                         <UserInfo>
+    <MMain>
+        <MContainer Fluid Id="scrolling-sheet-3">
+            <MErrorHandler>
+                <MRow Justify="JustifyTypes.Center">
+                    <MCol Lg="6" Style="min-width:900px;">
+                        @Body
+                    </MCol>
+                    <MCol Lg="3" Style="min-width:300px;">
+                        <UserInfo>
 
-                         </UserInfo>
-                         <br />
-                         <MButton OnClick="ToAdminHome" Block Dark>
+                        </UserInfo>
+                        <br />
+                        <MButton OnClick="ToAdminHome" Block Dark XLarge Class="rounded-xl">
                             去写一篇博客
                             <MIcon Right>mdi-login</MIcon>
                         </MButton>
+                        <br />
+                        <RecentPanel></RecentPanel>
                     </MCol>
                 </MRow>
             </MErrorHandler>
@@ -56,7 +58,7 @@
     </MMain>
 </MApp>
 
- @code {
+@code {
     void ToHome()
     {
         NavigationManager.NavigateTo("/");

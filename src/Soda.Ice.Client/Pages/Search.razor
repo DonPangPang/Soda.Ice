@@ -41,7 +41,6 @@ else
     }
 </style>
 
-
 @code {
     [Parameter]
     public Guid? tagId { get; set; }
@@ -64,7 +63,7 @@ else
             Blogs.Add(new VBlogTiny()
                 {
                     Title = "这是一个测试标题",
-                    Descrption = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
+                    Description = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
                 });
         }
 
@@ -81,7 +80,7 @@ else
 
         _search = v;
         _loading = true;
-        MachItems = Blogs.Where(x => x.Title.Contains(v) || x.Descrption.Contains(v)).ToList();
+        MachItems = Blogs.Where(x => x.Title.Contains(v) || x.Description.Contains(v)).ToList();
         await Task.Delay(3000);
         _loading = false;
     }

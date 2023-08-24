@@ -10,12 +10,15 @@ public record VBlog : ViewModel, ICreator, IModifior, ISoftDeleted
     public ICollection<VBlogGroup> BlogGroups { get; set; } = new HashSet<VBlogGroup>();
     public ICollection<VBlogTag> BlogTags { get; set; } = new HashSet<VBlogTag>();
 
-    public string Descrption { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     public string Content { get; set; } = string.Empty;
 
-    public Guid? LocalBlogFileResourceId { get; set; }
-    public VFileResource? LocalBlogFileResource { get; set; }
+    public Guid? TitleImageId { get; set; }
+    public VFileResource? TitleImage { get; set; }
+
+    public Guid? LocalBlogFileId { get; set; }
+    public VFileResource? LocalBlogFile { get; set; }
 
     public ICollection<VFileResource> FileResources { get; set; } = new List<VFileResource>();
 
@@ -42,7 +45,9 @@ public record VBlogTiny : ViewModel
     public ICollection<VBlogGroup> BlogGroups { get; set; } = new HashSet<VBlogGroup>();
     public ICollection<VBlogTag> BlogTags { get; set; } = new HashSet<VBlogTag>();
 
-    public string Descrption { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public Guid? TitleImageId { get; set; }
+    public VFileResource? TitleImage { get; set; }
 
     public DateTime CreateTime { get; set; }
 }

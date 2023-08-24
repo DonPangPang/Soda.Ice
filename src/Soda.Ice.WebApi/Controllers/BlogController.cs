@@ -26,7 +26,7 @@ public class BlogController : ApiControllerBase<Blog, VBlog, BlogParameters>
         var res = await _unitOfWork.Query<Blog>()
             .WhereIf(string.IsNullOrWhiteSpace(blogParameters.SearchKey),
                 x => x.Title.Contains(blogParameters.SearchKey!) ||
-                    x.Descrption.Contains(blogParameters.SearchKey!))
+                    x.Description.Contains(blogParameters.SearchKey!))
             .Map<Blog, VBlogTiny>().QueryAsync(blogParameters);
 
         return Success(res);
