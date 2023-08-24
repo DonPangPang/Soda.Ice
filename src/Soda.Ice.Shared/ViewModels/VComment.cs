@@ -8,6 +8,8 @@ public record VComment : ViewModel, ICreator, ISoftDeleted, ITree<VComment>
 
     public Guid CreatorId { get; set; }
     public VUser? Creator { get; set; }
+    public Guid? ReplyorId { get; set; }
+    public VUser? Replyor { get; set; }
     public DateTime CreateTime { get; set; }
     public bool Enabled { get; set; }
     public bool Deleted { get; set; }

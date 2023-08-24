@@ -1,19 +1,25 @@
 ﻿@page "/login"
+
+@layout EmptyLayout
 @inject AuthorizationApiService AuthorizationApiService
 
 <PageTitle>登录</PageTitle>
 
-<MContainer>
-    <MCard Width="500">
-        <MCardTitle>
-            Login
-        </MCardTitle>
-        <MCardText>
-            <MContainer>
-                <MRow>
-                    <MTextField @bind-Value="loginDto.Account"
-                                TValue="string" Label="账号"
-                                Placeholder="请输入账号"
+<MRow Justify="JustifyTypes.Center">
+    <MCard Width="500" Outlined Style="border:none">
+         <MCardTitle>
+             <MRow Justify="JustifyTypes.Center">
+                 <MIcon Color="pink" Size="200">
+                     mdi-ice-pop
+                 </MIcon>
+             </MRow>
+         </MCardTitle>
+         <MCardText>
+             <MContainer>
+                 <MRow>
+                     <MTextField @bind-Value="loginDto.Account"
+                                 TValue="string" Label="账号"
+                                 Placeholder="请输入账号"
                                 Outlined
                                 Dense>
                     </MTextField>
@@ -30,15 +36,18 @@
                     </MTextField>
                 </MRow>
                 <MRow>
-                    <MButton OnClick="LoginHandler">登录</MButton>
-                </MRow>
-            </MContainer>
-        </MCardText>
-    </MCard>
-</MContainer>
+                    <MButton OnClick="LoginHandler" Block Color="success">登录</MButton>
+                 </MRow>
+                 <MRow Style="margin-top:20px;">
+                     <MButton OnClick="LoginHandler" Block Color="warning">注册</MButton>
+                 </MRow>
+             </MContainer>
+         </MCardText>
+     </MCard>
+ </MRow>
 
 
-@code {
+ @code {
     bool ShowPassword = false;
 
     VLogin loginDto = new VLogin();

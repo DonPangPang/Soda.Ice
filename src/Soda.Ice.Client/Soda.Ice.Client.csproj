@@ -14,11 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Soda.Ice.Common\Soda.Ice.Common.csproj" />
     <ProjectReference Include="..\Soda.Ice.Shared\Soda.Ice.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\AdminPages\" />
   </ItemGroup>
 
 </Project>

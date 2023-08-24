@@ -8,7 +8,12 @@ public class Comment : EntityBase, ICreator, IEnabled, ISoftDeleted, ITree<Comme
 
     public Guid CreatorId { get; set; }
     public User? Creator { get; set; }
+
+    public Guid? ReplyorId { get; set; }
+    public User? Replyor { get; set; }
+
     public DateTime CreateTime { get; set; }
+    public bool HasRead { get; set; } = false;
     public bool Enabled { get; set; }
     public bool Deleted { get; set; }
     public Guid? ParentId { get; set; }

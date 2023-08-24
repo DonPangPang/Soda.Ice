@@ -2,7 +2,7 @@
 @inject NavigationManager NavigationManager
 
 <MApp>
-    <MAppBar App>
+    <MAppBar App ClippedLeft>
         <MAppBarNavIcon>
             <ChildContent>
                 <MButton Icon Href="/" Color="pink" XLarge>
@@ -36,34 +36,15 @@
      <MMain>
          <MContainer Fluid Id="scrolling-sheet-3">
              <MErrorHandler>
-                 <MRow Justify="JustifyTypes.Center">
-                     <MCol Lg="6" Style="min-width:900px;">
-                         @Body
-                     </MCol>
-                     <MCol Lg="3" Style="min-width:300px;">
-                         <UserInfo>
-
-                         </UserInfo>
-                         <br />
-                         <MButton OnClick="ToAdminHome" Block Dark>
-                            去写一篇博客
-                            <MIcon Right>mdi-login</MIcon>
-                        </MButton>
-                    </MCol>
-                </MRow>
-            </MErrorHandler>
-        </MContainer>
-    </MMain>
-</MApp>
+                 @Body
+             </MErrorHandler>
+         </MContainer>
+     </MMain>
+ </MApp>
 
  @code {
     void ToHome()
     {
         NavigationManager.NavigateTo("/");
-    }
-
-    void ToAdminHome()
-    {
-        NavigationManager.NavigateTo("/admin");
     }
 }

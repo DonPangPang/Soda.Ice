@@ -9,7 +9,7 @@
         <PBlockText>
             <PrimaryContent>
                 <MIcon Left Small>mdi-calendar-month</MIcon>
-                @Blog.CreateTime
+                @Blog.CreateTime.ToFormatDateString()
             </PrimaryContent>
         </PBlockText>
     </MCardSubtitle>
@@ -28,25 +28,37 @@
                 <MCol Cols="8">
                 </MCol>
                 <MCol Cols="2">
-                    <PBlockText>
-                        <PrimaryContent>
-                            <MIcon Left Small>mdi-eye</MIcon>
-                            @Blog.BlogViewLogCount
-                        </PrimaryContent>
-                    </PBlockText>
+                    <MButton Text>
+                        <PBlockText>
+                            <PrimaryContent>
+                                <MIcon Left Small>mdi-eye</MIcon>
+                                @Blog.BlogViewLogCount
+                            </PrimaryContent>
+                        </PBlockText>
+                    </MButton>
                 </MCol>
                 <MCol Cols="2">
-                    <PBlockText>
-                        <PrimaryContent>
-                            <MIcon Left Small>mdi-comment-text</MIcon>
-                            33
-                        </PrimaryContent>
-                    </PBlockText>
+                    <MButton OnClick="ShowCommentsHandler" Text>
+                        <PBlockText>
+                            <PrimaryContent>
+                                <MIcon Left Small>mdi-comment-text</MIcon>
+                                33
+                            </PrimaryContent>
+                        </PBlockText>
+                    </MButton>
                 </MCol>
             </MRow>
         </div>
     </MCardText>
 </MCard>
+@if (ShowComments)
+{
+    <br />
+    <MCard Class="rounded-xl">
+        <MCardTitle>评论</MCardTitle>
+        <MCardText></MCardText>
+    </MCard>
+}
 
 
 <style>
@@ -64,6 +76,13 @@
 @code {
     [Parameter]
     public Guid blogId { get; set; }
+
+    bool ShowComments = false;
+
+    void ShowCommentsHandler()
+    {
+        ShowComments = !ShowComments;
+    }
 
     VBlog Blog = new()
         {
