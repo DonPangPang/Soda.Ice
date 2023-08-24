@@ -1,14 +1,21 @@
-﻿
-<MChip Color="@color" TextColor="white" Style="margin:5px;" Class="ma-2">
+﻿@inject NavigationManager NavigationManager
+
+<MChip Color="@Color" TextColor="white" Style="margin:5px;" Class="ma-2"
+       OnClick="ToSearchGroup">
     @Item.Name
     <MAvatar Right Class="white darken-4">
-         <span style="color:@color">@Item.BlogCount</span>
-     </MAvatar>
- </MChip>
+        <span style="color:@Color">@Item.BlogCount</span>
+    </MAvatar>
+</MChip>
 
- @code {
+@code {
     [Parameter]
     public VBlogGroup Item { get; set; } = new();
 
-    string color => ColorExtensions.GetRandomColor();
+    string Color => ColorExtensions.GetRandomColor();
+
+    void ToSearchGroup()
+    {
+        NavigationManager.NavigateTo($"/search/group/{Item.Id}");
+    }
 }

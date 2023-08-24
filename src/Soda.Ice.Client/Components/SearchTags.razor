@@ -1,18 +1,18 @@
-﻿@foreach (var tag in Tags)
+﻿@foreach (var tag in _tags)
 {
     <BlogTag Item="@tag"></BlogTag>
 }
 @code {
-    List<VBlogTag> Tags = new List<VBlogTag>()
+    List<VBlogTag> _tags = new List<VBlogTag>()
     {
     };
 
     protected override Task OnInitializedAsync()
     {
-        Tags = new List<VBlogTag>();
+        _tags = new List<VBlogTag>();
         for (var i = 0; i < 20; i++)
         {
-            Tags.Add(new VBlogTag { Name = $"标签{i}" });
+            _tags.Add(new VBlogTag { Id = Guid.NewGuid(), Name = $"标签{i}" });
         }
         return base.OnInitializedAsync();
     }

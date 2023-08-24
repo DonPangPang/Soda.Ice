@@ -1,18 +1,18 @@
-﻿@foreach (var group in Groups)
+﻿@foreach (var group in _groups)
 {
     <BlogGroup Item="@group"></BlogGroup>
 }
 @code {
-    List<VBlogGroup> Groups = new List<VBlogGroup>()
+    List<VBlogGroup> _groups = new List<VBlogGroup>()
     {
     };
 
     protected override Task OnInitializedAsync()
     {
-        Groups = new List<VBlogGroup>();
+        _groups = new List<VBlogGroup>();
         for (var i = 0; i < 20; i++)
         {
-            Groups.Add(new VBlogGroup { Name = $"分组{i}", BlogCount = i });
+            _groups.Add(new VBlogGroup { Id = Guid.NewGuid(), Name = $"分组{i}", BlogCount = i });
         }
         return base.OnInitializedAsync();
     }

@@ -1,13 +1,20 @@
-﻿<MChip Label Color="@color" TextColor="white" XSmall="Small" Small="!Small" Style="margin:5px;">
-     @Item.Name
- </MChip>
+﻿@inject NavigationManager NavigationManager
 
- @code {
+<MChip Label Color="@Color" TextColor="white" XSmall="Small" Small="!Small" Style="margin:5px;"
+       OnClick="ToSearchTag">
+    @Item.Name
+</MChip>
+
+@code {
     [Parameter]
     public VBlogTag Item { get; set; } = new();
     [Parameter]
     public bool Small { get; set; } = false;
 
-    string color => ColorExtensions.GetRandomColor();
+    string Color => ColorExtensions.GetRandomColor();
 
+    void ToSearchTag()
+    {
+        NavigationManager.NavigateTo($"/search/tag/{Item.Id}");
+    }
 }
