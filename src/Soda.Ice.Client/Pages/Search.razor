@@ -1,4 +1,6 @@
 ﻿@page "/search"
+@page "/search/tag/{tagId:guid}"
+@page "/search/group/{groupId:guid}"
 
 <PageTitle>搜索</PageTitle>
 
@@ -41,6 +43,11 @@ else
 
 
 @code {
+    [Parameter]
+    public Guid? tagId { get; set; }
+    [Parameter]
+    public Guid? groupId { get; set; }
+
     private bool _loading;
     string _search = string.Empty;
     private List<VBlogTiny> MachItems = new List<VBlogTiny>();

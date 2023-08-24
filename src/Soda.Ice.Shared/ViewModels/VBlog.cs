@@ -44,5 +44,5 @@ public record VBlogTiny : ViewModel
 
     public string Descrption { get; set; } = string.Empty;
 
-    public string Content { get; set; } = string.Empty;
+    public DateTime CreateTime { get; set; }
 }

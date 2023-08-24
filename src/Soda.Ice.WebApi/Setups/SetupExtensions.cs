@@ -169,6 +169,7 @@ public static class SetupExtensions
             }
 
             setup.CreateMap<VRegisterUser, User>();
+            setup.CreateMap<Blog, VBlogTiny>();
         }, AppDomain.CurrentDomain.GetAssemblies());
     }
 

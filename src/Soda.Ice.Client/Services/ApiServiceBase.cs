@@ -104,8 +104,21 @@ namespace Soda.Ice.Client.Services
 
     public class BlogApiService : ApiServiceBase<VBlog, BlogParameters>
     {
+        private readonly IIceHttpClient _iceHttpClient;
+
         public BlogApiService(IPopupService popupService, IIceHttpClient iceHttpClient) : base(popupService, iceHttpClient, "Blog")
         {
+            _iceHttpClient = iceHttpClient;
+        }
+
+        public async Task<VPagedList<VBlogTiny>> SearchAsync(BlogSearchParameters parameters)
+        {
+            var res = await _iceHttpClient.Create().Url($"/api/{ControllerName}/search{parameters.GetQueryString()}")
+                .GetAsync<IceResponse<IEnumerable<VBlogTiny>>>();
+
+            await MessageHandler(res);
+
+            return (VPagedList<VBlogTiny>)(res?.Data ?? Enumerable.Empty<VBlogTiny>());
         }
     }
 

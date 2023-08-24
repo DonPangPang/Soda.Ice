@@ -92,7 +92,9 @@ public static class QueryableExtensions
 
                 var attr = property.GetCustomAttribute<IceCompareAttribute>();
 
-                var comparer = attr?.Comparer switch
+                if (attr is null) continue;
+
+                var comparer = attr.Comparer switch
                 {
                     Operation.Contains => ".Contains",
                     Operation.GreaterThan => ">",

@@ -1,14 +1,36 @@
 ﻿<MCard Elevation="4" Style="margin-top:10px;">
     <MCardTitle>
-        <PBlockText Tags="tags">
+        <PBlockText>
             <PrimaryContent>
                 <TextFlag Text="@Item.Title" Flag="@Search"></TextFlag>
+                @foreach (var item in Item.BlogGroups)
+                {
+                    <BlogGroup Item="@item"></BlogGroup>
+                }
             </PrimaryContent>
         </PBlockText>
     </MCardTitle>
+    <MCardSubtitle>
+        <PBlockText>
+            <PrimaryContent>
+                <MIcon Left Small>mdi-calendar-month</MIcon>
+                @Item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
+            </PrimaryContent>
+        </PBlockText>
+        <div>
+            @foreach (var item in Item.BlogTags)
+            {
+                <BlogTag Item="@item" Small></BlogTag>
+            }
+        </div>
+    </MCardSubtitle>
     <MCardText>
         <TextFlag Text="@Item.Descrption" Flag="@Search"></TextFlag>
+
     </MCardText>
+    <MCardActions>
+
+    </MCardActions>
 </MCard>
 
 @code {
@@ -18,9 +40,15 @@
     [Parameter]
     public string Search { get; set; } = string.Empty;
 
-    IEnumerable<BlockTextTag> tags = new List<BlockTextTag>()
+
+    protected override Task OnInitializedAsync()
     {
-        new("分类1", "green", "white"),
-        new("分类2", "purple", true)
-    };
+        Item.BlogTags = new List<VBlogTag>();
+        for (var i = 0; i < 20; i++)
+        {
+            Item.BlogTags.Add(new VBlogTag { Name = $"标签{i}" });
+            if (i % 5 == 0) Item.BlogGroups.Add(new VBlogGroup { Name = $"标签{i}", BlogCount = i });
+        }
+        return base.OnInitializedAsync();
+    }
 }
