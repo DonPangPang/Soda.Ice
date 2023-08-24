@@ -9,10 +9,38 @@
              ValueChanged="QuerySelections"
              AppendIcon="mdi-magnify" Class="rounded-lg">
  </MTextField>
- <TagsPanel></TagsPanel>
- <SearchList Search="@_search" Items="@MachItems"></SearchList>
+ <MDivider Height="40">
+     <MIcon Color="red" Left Style="line-height: inherit;">mdi-tag-multiple</MIcon>
+     标签
+ </MDivider>
+ <SearchTags></SearchTags>
+ <MDivider Height="40">
+     <MIcon Color="red" Left Style="line-height: inherit;">mdi-tag-multiple</MIcon>
+     分组
+ </MDivider>
+ <SearchGroups></SearchGroups>
 
- @code {
+ @if (_loading)
+{
+    <div style="text-align:center">
+        <MProgressCircular Size="80" Width="8"
+                                      Indeterminate
+                            Color="purple"></MProgressCircular>
+     </div>
+}
+else
+{
+    <SearchList Search="@_search" Items="@MachItems"></SearchList>
+}
+
+<style>
+    .m-progress-circular {
+        margin: 1rem;
+    }
+</style>
+
+
+@code {
     private bool _loading;
     string _search = string.Empty;
     private List<VBlogTiny> MachItems = new List<VBlogTiny>();
@@ -47,7 +75,7 @@
         _search = v;
         _loading = true;
         MachItems = Blogs.Where(x => x.Title.Contains(v) || x.Descrption.Contains(v)).ToList();
-        // await Task.Delay(5000);
+        await Task.Delay(3000);
         _loading = false;
     }
 }

@@ -4,7 +4,7 @@
 
 <PageTitle>@Blog.Title</PageTitle>
 
-<MCard Class="rounded-xl">
+<MCard Class="rounded-xl" Style="align-content:center">
     <MCardSubtitle>
         <PBlockText>
             <PrimaryContent>
@@ -14,12 +14,14 @@
         </PBlockText>
     </MCardSubtitle>
     <MCardText>
-        <MMarkdownIt Html="true"
-                     Breaks="true"
-                     Linkify="true"
-                     Typographer="true"
-                     HeaderSections="true"
-                     Source="@Blog.Content" Class="markdown-parser__basic line-numbers" Style="max-width:900px;" OnTocParsed="OnTocParsed" />
+        <div>
+            <MMarkdownIt Html="true"
+                         Breaks="true"
+                         Linkify="true"
+                         Typographer="true"
+                         HeaderSections="true"
+                         Source="@Blog.Content" Class="markdown-parser__basic line-numbers" Style="100%" OnTocParsed="OnTocParsed" />
+        </div>
 
         <div style="padding-top:12px">
             <MRow>
@@ -45,6 +47,7 @@
         </div>
     </MCardText>
 </MCard>
+
 
 <style>
     code {

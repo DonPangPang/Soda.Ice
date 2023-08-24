@@ -1,8 +1,6 @@
 ﻿@foreach (var tag in Tags)
 {
-    <MChip Label Color="pink" TextColor="white" Small Style="margin:5px;">
-         @tag.Name
-     </MChip>
+    <BlogTag Item="@tag"></BlogTag>
 }
 @code {
     List<VBlogTag> Tags = new List<VBlogTag>()

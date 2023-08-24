@@ -1,17 +1,17 @@
-﻿<MCard Elevation="0" Outlined Style="margin-bottom:5px;">
-     <MCardTitle>
-         <PBlockText Tags="tags">
-             <PrimaryContent>
-                 <TextFlag Text="@Item.Title" Flag="@Search"></TextFlag>
-             </PrimaryContent>
-         </PBlockText>
-     </MCardTitle>
-     <MCardText>
-         <TextFlag Text="@Item.Descrption" Flag="@Search"></TextFlag>
-     </MCardText>
- </MCard>
+﻿<MCard Elevation="4" Style="margin-top:10px;">
+    <MCardTitle>
+        <PBlockText Tags="tags">
+            <PrimaryContent>
+                <TextFlag Text="@Item.Title" Flag="@Search"></TextFlag>
+            </PrimaryContent>
+        </PBlockText>
+    </MCardTitle>
+    <MCardText>
+        <TextFlag Text="@Item.Descrption" Flag="@Search"></TextFlag>
+    </MCardText>
+</MCard>
 
- @code {
+@code {
     [Parameter]
     public VBlogTiny Item { get; set; } = new();
 

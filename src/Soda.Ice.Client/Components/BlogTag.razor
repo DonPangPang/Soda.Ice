@@ -1,0 +1,11 @@
+﻿<MChip Label Color="@color" TextColor="white" Small Style="margin:5px;">
+     @Item.Name
+ </MChip>
+
+ @code {
+    [Parameter]
+    public VBlogTag Item { get; set; } = new();
+
+    string color => ColorExtensions.GetRandomColor();
+
+}

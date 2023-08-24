@@ -1,4 +1,6 @@
-﻿<MCard Style="margin:5px" Class="rounded-xl">
+﻿@inject NavigationManager NavigationManager
+
+<MCard Style="margin:5px" Class="rounded-xl" OnClick="ShowDetail">
     <MCardText>
         <MRow Justify="JustifyTypes.Center">
             @if (IsLeft)
@@ -31,4 +33,9 @@
 
     [Parameter]
     public VBlog Blog { get; set; } = new();
+
+    void ShowDetail()
+    {
+        NavigationManager.NavigateTo($"/detail/{Blog.Id}");
+    }
 }

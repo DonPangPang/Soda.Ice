@@ -1,0 +1,14 @@
+﻿
+<MChip Color="@color" TextColor="white" Style="margin:5px;" Class="ma-2">
+    @Item.Name
+    <MAvatar Right Class="white darken-4">
+         <span style="color:@color">@Item.BlogCount</span>
+     </MAvatar>
+ </MChip>
+
+ @code {
+    [Parameter]
+    public VBlogGroup Item { get; set; } = new();
+
+    string color => ColorExtensions.GetRandomColor();
+}
