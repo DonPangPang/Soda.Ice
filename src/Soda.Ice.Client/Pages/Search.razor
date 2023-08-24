@@ -1,38 +1,38 @@
 ﻿@page "/search"
-@page "/search/tag/{tagId:guid}"
-@page "/search/group/{groupId:guid}"
+@page "/search/tag/{TagId:guid}"
+@page "/search/group/{GroupId:guid}"
 
 <PageTitle>搜索</PageTitle>
 
 <MTextField Label="请输入搜索的内容"
             TValue="string"
             Outlined
-             Loading="_loading"
-             ValueChanged="QuerySelections"
-             AppendIcon="mdi-magnify" Class="rounded-lg">
- </MTextField>
- <MDivider Height="40">
-     <MIcon Color="red" Left Style="line-height: inherit;">mdi-tag-multiple</MIcon>
-     标签
- </MDivider>
- <SearchTags></SearchTags>
- <MDivider Height="40">
-     <MIcon Color="red" Left Style="line-height: inherit;">mdi-tag-multiple</MIcon>
-     分组
- </MDivider>
- <SearchGroups></SearchGroups>
+            Loading="_loading"
+            ValueChanged="QuerySelections"
+            AppendIcon="mdi-magnify" Class="rounded-lg">
+</MTextField>
+<MDivider Height="40" Style="margin-top:-10px;">
+    <MIcon Color="red" Left Style="line-height: inherit;">mdi-tag-multiple</MIcon>
+    标签
+</MDivider>
+<SearchTags></SearchTags>
+<MDivider Height="40">
+    <MIcon Color="red" Left Style="line-height: inherit;">mdi-tag-multiple</MIcon>
+    分组
+</MDivider>
+<SearchGroups></SearchGroups>
 
- @if (_loading)
+@if (_loading)
 {
     <div style="text-align:center">
         <MProgressCircular Size="80" Width="8"
-                                      Indeterminate
-                            Color="purple"></MProgressCircular>
-     </div>
+                           Indeterminate
+                           Color="purple"></MProgressCircular>
+    </div>
 }
 else
 {
-    <SearchList Search="@_search" Items="@MachItems"></SearchList>
+    <SearchList Search="@_search"></SearchList>
 }
 
 <style>
@@ -43,45 +43,18 @@ else
 
 @code {
     [Parameter]
-    public Guid? tagId { get; set; }
+    public Guid? TagId { get; set; }
     [Parameter]
-    public Guid? groupId { get; set; }
+    public Guid? GroupId { get; set; }
 
     private bool _loading;
     string _search = string.Empty;
-    private List<VBlogTiny> MachItems = new List<VBlogTiny>();
-
-    List<VBlogTiny> Blogs = new List<VBlogTiny>()
-    {
-
-    };
-
-    protected override Task OnInitializedAsync()
-    {
-        foreach (var item in Enumerable.Range(1, 10))
-        {
-            Blogs.Add(new VBlogTiny()
-                {
-                    Title = "这是一个测试标题",
-                    Description = "这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容这是一个测试内容",
-                });
-        }
-
-        return base.OnInitializedAsync();
-    }
 
     private async Task QuerySelections(string v)
     {
-        if (string.IsNullOrWhiteSpace(v))
-        {
-            MachItems.Clear();
-            return;
-        }
-
         _search = v;
         _loading = true;
-        MachItems = Blogs.Where(x => x.Title.Contains(v) || x.Description.Contains(v)).ToList();
-        await Task.Delay(3000);
+        await Task.Delay(2000);
         _loading = false;
     }
 }

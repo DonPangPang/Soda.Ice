@@ -1,4 +1,6 @@
-﻿<MCard Elevation="4" Style="margin-top:10px;">
+﻿@inject NavigationManager NavigationManager
+
+<MCard Elevation="4" Style="margin-top:10px;" Class="rounded-xl" OnClick="ShowDetail">
     <MCardTitle>
         <PBlockText>
             <PrimaryContent>
@@ -14,7 +16,7 @@
         <PBlockText>
             <PrimaryContent>
                 <MIcon Left Small>mdi-calendar-month</MIcon>
-                @Item.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
+                @Item.CreateTime.ToFormatDateString()
             </PrimaryContent>
         </PBlockText>
         <div>
@@ -46,8 +48,13 @@
         for (var i = 0; i < 20; i++)
         {
             Item.BlogTags.Add(new VBlogTag { Name = $"标签{i}" });
-            if (i % 5 == 0) Item.BlogGroups.Add(new VBlogGroup { Name = $"标签{i}", BlogCount = i });
+            if (i % 5 == 0) Item.BlogGroups.Add(new VBlogGroup { Id = Guid.NewGuid(), Name = $"标签{i}", BlogCount = i });
         }
         return base.OnInitializedAsync();
+    }
+
+    void ShowDetail()
+    {
+        NavigationManager.NavigateTo($"/detail/{Item.Id}");
     }
 }
